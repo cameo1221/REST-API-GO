@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  db1:
+    image: "postgres:13"
+    ports:
+      - 5432:5432
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=local
+      - POSTGRES_PASSWORD=220103
+      - POSTGRES_DB=docker1
+
+  pgadmin:
+    image: "dpage/pgadmin4"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=aryansinghyadav@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - 80:80
+    depends_on:
+      - db1
